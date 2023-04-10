@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Debug macaudiowizard",
+      "program": "${workspaceFolder:MacAudioWizard}/.build/debug/macaudiowizard",
+      "args": [],
+      "cwd": "${workspaceFolder:MacAudioWizard}",
+      "preLaunchTask": "swift: Build Debug macaudiowizard"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Release macaudiowizard",
+      "program": "${workspaceFolder:MacAudioWizard}/.build/release/macaudiowizard",
+      "args": [],
+      "cwd": "${workspaceFolder:MacAudioWizard}",
+      "preLaunchTask": "swift: Build Release macaudiowizard"
+    }
+  ]
+}
