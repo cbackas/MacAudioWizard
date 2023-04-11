@@ -13,10 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Swift environment
-      uses: fwal/setup-swift@v2
-      with:
-        swift-version: '5.5.2'
+    - uses: swift-actions/setup-swift@v1
 
     - name: Build Swift app
       run: swift build -c release
