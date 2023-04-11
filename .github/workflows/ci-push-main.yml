@@ -21,10 +21,11 @@ jobs:
     - name: Build Swift app
       run: swift build -c release
 
+    - name: Install Homebrew
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
     - name: Install Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      run: brew install node
 
     - name: Install semantic-release
       run: npm ci

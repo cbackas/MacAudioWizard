@@ -1,0 +1,30 @@
+name: Pull Request
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  release:
+    runs-on: [macos-latest, arm64]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Swift environment
+      uses: fwal/setup-swift@v2
+      with:
+        swift-version: '5.5.2'
+
+    - name: Build Swift app
+      run: swift build -c release
+    
+    - name: Install Homebrew
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    - name: Install Node.js
+      run: brew install node
