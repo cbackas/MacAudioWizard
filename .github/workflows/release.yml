@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: [macos-latest, arm64]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Swift environment
+      uses: fwal/setup-swift@v2
+      with:
+        swift-version: '5.5.2'
+
+    - name: Build Swift app
+      run: swift build -c release
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install semantic-release
+      run: npm ci
+
+    - name: Run semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: npx semantic-release
