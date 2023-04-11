@@ -23,6 +23,30 @@
       "args": [],
       "cwd": "${workspaceFolder:MacAudioWizard}",
       "preLaunchTask": "swift: Build Release macaudiowizard"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Debug MacAudioWizard",
+      "program": "${workspaceFolder:MacAudioWizard}/.build/debug/MacAudioWizard",
+      "args": [],
+      "cwd": "${workspaceFolder:MacAudioWizard}",
+      "preLaunchTask": "swift: Build Debug MacAudioWizard"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Release MacAudioWizard",
+      "program": "${workspaceFolder:MacAudioWizard}/.build/release/MacAudioWizard",
+      "args": [],
+      "cwd": "${workspaceFolder:MacAudioWizard}",
+      "preLaunchTask": "swift: Build Release MacAudioWizard"
     }
   ]
 }
