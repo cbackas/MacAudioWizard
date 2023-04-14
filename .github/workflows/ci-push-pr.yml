@@ -20,12 +20,6 @@ jobs:
     - name: Build Swift app
       run: swift build -c release --arch arm64 --arch x86_64
 
-    - name: List directory contents2
-      run: ls -la .build/apple
-
-    - name: List directory contents3
-      run: ls -la .build/apple/Products/Release
-
     - name: Save Artifact
       uses: actions/upload-artifact@v3
       with:
