@@ -18,7 +18,7 @@ jobs:
     - uses: swift-actions/setup-swift@v1
 
     - name: Build Swift app
-      run: swift build -c release
+      run: swift build -c release --arch arm64 --arch x86_64
   
     - name: List directory contents1
       run: ls -la .
