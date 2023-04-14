@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - uses: swift-actions/setup-swift@v1
+
+    - name: Build Swift app
+      run: swift build -c release --arch arm64 --arch x86_64
+
+    - name: Save Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        path: .build/apple/Products/Release/MacAudioWizard
+
+  release:
+    runs-on: macos-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Node.js and semantic-release
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        brew install node
+        npm ci
+
+    - name: Run semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npx semantic-release
