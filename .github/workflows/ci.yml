@@ -44,7 +44,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: MacAudioWizard
-        poath: .build/apple/Products/Release
+        path: .build/apple/Products/Release/MacAudioWizard
 
 
     - name: Install Node.js and semantic-release
