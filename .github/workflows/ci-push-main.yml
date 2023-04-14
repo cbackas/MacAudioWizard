@@ -21,7 +21,7 @@ jobs:
     - name: Save Artifact
       uses: actions/upload-artifact@v3
       with:
-        path: .build/release/MacAudioWizard
+        path: .build/apple/Products/Release/MacAudioWizard
 
     - name: Install Node.js
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install node
