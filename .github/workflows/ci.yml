@@ -26,6 +26,7 @@ jobs:
     - name: Save Artifact
       uses: actions/upload-artifact@v3
       with:
+        name: MacAudioWizard
         path: .build/apple/Products/Release/MacAudioWizard
 
   release:
@@ -38,6 +39,13 @@ jobs:
       uses: actions/checkout@v3
       with:
         persist-credentials: false
+    
+    - name: Download Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: MacAudioWizard
+        poath: .build/apple/Products/Release
+
 
     - name: Install Node.js and semantic-release
       run: |
