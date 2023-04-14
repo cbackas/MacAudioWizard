@@ -17,6 +17,15 @@ jobs:
 
     - name: Build Swift app
       run: swift build -c release
+
+    - name: List directory contents1
+      run: ls -la .
+
+    - name: List directory contents2
+      run: ls -la .build
+
+    - name: List directory contents3
+      run: ls -la .build/release
     
     - name: Save Artifact
       uses: actions/upload-artifact@v3
