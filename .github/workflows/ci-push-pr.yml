@@ -19,9 +19,8 @@ jobs:
 
     - name: Build Swift app
       run: swift build -c release
-    
-    - name: Install Homebrew
-      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
-    - name: Install Node.js
-      run: brew install node
+
+    - name: Save Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        path: .build/release/MacAudioWizard
