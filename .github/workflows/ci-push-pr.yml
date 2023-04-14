@@ -9,7 +9,7 @@ on:
 
 jobs:
   release:
-    runs-on: macos-arm-latest
+    runs-on: macos-latest
 
     steps:
     - name: Checkout repository
