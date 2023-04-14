@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - uses: swift-actions/setup-swift@v1
+
+    - name: Build Swift app
+      run: swift build -c release
+    
+    - name: Save Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        path: .build/apple/Products/Release/MacAudioWizard
+
+    - name: Install Node.js
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install node
+
+    - name: Install semantic-release
+      run: npm ci
+
+    - name: Run semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: npx semantic-release
