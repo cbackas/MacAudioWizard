@@ -20,6 +20,7 @@ func defaultDeviceChanged(deviceId _: AudioObjectID, _: UInt32, _: UnsafePointer
 // we want to listen for changes to the default devices and the connected devices
 addAudioPropertyListener(mSelector: kAudioHardwarePropertyDefaultOutputDevice, defaultDeviceChanged)
 addAudioPropertyListener(mSelector: kAudioHardwarePropertyDevices, defaultDeviceChanged)
+addAudioPropertyListener(mSelector: kAudioDevicePropertyStreamConfiguration, defaultDeviceChanged)
 
 // Run the run loop to receive property change notifications
 RunLoop.current.run()
