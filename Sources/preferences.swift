@@ -1,4 +1,5 @@
 import CoreAudio
+import SwiftyBeaver
 
 func setPreferredInputDevices(connectedDevices: [String: String], currentDefaults: (input: String, output: String)) {
   let audioCodecInput = "AppleUSBAudioEngine:Burr-Brown from TI              :USB Audio CODEC :5111000:2"
@@ -6,13 +7,13 @@ func setPreferredInputDevices(connectedDevices: [String: String], currentDefault
 
   // handle microphone precedence
   if connectedDevices[audioCodecInput] != nil {
+    log.info("Using USB Codec as import device")
     if currentDefaults.input != audioCodecInput {
-      print("Using USB Codec as input device")
       setDefaultDevice(deviceType: kAudioHardwarePropertyDefaultInputDevice, deviceUID: audioCodecInput)
     }
   } else {
+    log.info("Using built-in microphone as input device")
     if currentDefaults.input != builtInInput {
-      print("Using built-in microphone as input device")
       setDefaultDevice(deviceType: kAudioHardwarePropertyDefaultInputDevice, deviceUID: builtInInput)
     }
   }
