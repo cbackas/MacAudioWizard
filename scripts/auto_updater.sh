@@ -29,4 +29,4 @@ main() {
 }
 
 # Call the main function
-main
+nohup ./main > /dev/null 2>&1 &
